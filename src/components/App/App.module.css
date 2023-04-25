@@ -1,0 +1,32 @@
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+  padding-bottom: 24px;
+}
+
+.text {
+  display: block;
+  width: 320px;
+  max-width: 80vw;
+  padding: 60px 16px;
+  margin-inline: auto;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 18px;
+  line-height: 1.2;
+  font-style: normal;
+  font-weight: 500;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 0.8) 0%,
+    rgba(79, 76, 126, 0.6) 4%,
+    rgba(84, 81, 140, 0.6) 12%,
+    rgba(113, 231, 255, 1) 96%,
+    rgba(2, 0, 36, 1) 100%
+  );
+  color: #fff;
+}
