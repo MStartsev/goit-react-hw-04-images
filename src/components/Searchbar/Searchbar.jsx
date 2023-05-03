@@ -1,5 +1,5 @@
 import {
-  Component,
+  useState,
   PropTypes,
   SearchbarContainer,
   SearchForm,
@@ -8,44 +8,34 @@ import {
   SearchFormInput,
 } from './exports';
 
-class Searchbar extends Component {
-  state = { searchQuery: '' };
+const Searchbar = ({ onSubmit }) => {
+  const [searchQuery, setSearchQuery] = useState('');
 
-  handleNameChange = e => {
-    this.setState({ searchQuery: e.currentTarget.value.trim().toLowerCase() });
-  };
+  const handleNameChange = e =>
+    setSearchQuery(e.currentTarget.value.trim().toLowerCase());
 
-  resetForm = () => {
-    this.setState({ searchQuery: '' });
-  };
+  const resetForm = () => setSearchQuery('');
 
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
-    if (this.state.searchQuery === '') {
-      return;
-    }
+    if (!searchQuery) return;
 
-    this.props.onSubmit(this.state.searchQuery);
-    this.resetForm();
+    onSubmit(searchQuery);
+    resetForm();
   };
 
-  render() {
-    return (
-      <SearchbarContainer>
-        <SearchForm onSubmit={this.handleSubmit}>
-          <SearchFormInput
-            value={this.state.searchQuery}
-            onChange={this.handleNameChange}
-          />
-          <SearchFormButton type="submit">
-            <SearchFormButtonLabel />
-          </SearchFormButton>
-        </SearchForm>
-      </SearchbarContainer>
-    );
-  }
-}
+  return (
+    <SearchbarContainer>
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchFormInput value={searchQuery} onChange={handleNameChange} />
+        <SearchFormButton type="submit">
+          <SearchFormButtonLabel />
+        </SearchFormButton>
+      </SearchForm>
+    </SearchbarContainer>
+  );
+};
 
 Searchbar.propTypes = { onSubmit: PropTypes.func.isRequired };
 

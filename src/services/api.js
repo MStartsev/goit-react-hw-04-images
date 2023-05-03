@@ -10,7 +10,7 @@ axios.defaults.params = {
   safesearch: true,
 };
 
-export const getImages = async (searchQuery = '', page = 1, per_page) => {
+export const getImages = async (searchQuery = '', page = 1, per_page = 9) => {
   try {
     const response = await axios.get(
       `?q=${searchQuery}&page=${page}&per_page=${per_page}`
